@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Charadas</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        function gerarNovaCharada() {
+            fetch('/nova_charada')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('pergunta').innerText = "Pergunta: " + data.pergunta;
+                    document.getElementById('resposta').innerText = "Resposta: " + data.resposta;
+                })
+                .catch(error => console.error('Erro ao buscar charada:', error));
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Gerador de Charadas</h1>
+        <button onclick="gerarNovaCharada()">Gerar Nova Charada</button>
+        <p id="pergunta">Clique no botão para gerar uma charada!</p>
+        <p id="resposta"></p>
+    </div>
+</body>
+</html>
